@@ -1,4 +1,4 @@
-#' @importFrom httr http_error add_headers warn_for_status content modify_url parse_url
+#' @importFrom httr http_error content modify_url parse_url
 m_scrape <- function(bow, query=NULL, params=NULL, accept="html", content=NULL, verbose=FALSE) { # nolint
 
   if(!inherits(bow, "polite"))
@@ -29,28 +29,14 @@ m_scrape <- function(bow, query=NULL, params=NULL, accept="html", content=NULL, 
   accept_type <- httr::accept(accept)
   bow$config <- c(bow$config, accept_type)
 
-  response <- httr_get_ltd(bow$url, bow$config, bow$handle)
-  max_attempts <- 3
-
-  att_msg <- c(rep("",max_attempts-1),
-               "This is the last attempt, if it fails will return NULL")
-
-  try_number <- 1
-  while (httr::http_error(response) && try_number < max_attempts) {
-    try_number <- try_number + 1
-    if (verbose)
-      message(paste0("Attempt number ", try_number,".", att_msg[[try_number]]))
-
-    Sys.sleep(2^try_number)
-    response <- httr_get_ltd(bow$url, bow$config, bow$handle)
-  }
+  response <- httr_get_ltd(bow$url, bow$config, bow$handle, bow$times, verbose)
 
   if(httr::http_error(response)){
     warning(httr::http_status(response)$message, " ", bow$url, call. = FALSE)
     return(NULL)
   }
 
-  content <- content %||% response$headers$`content-type`
+  content <- content %otherwise% response$headers$`content-type`
 
   res <- tryCatch(
     {
@@ -84,39 +70,11 @@ m_scrape <- function(bow, query=NULL, params=NULL, accept="html", content=NULL, 
 #' @examples
 #' \donttest{
 #'  library(rvest)
-#'  biases <- bow("https://en.wikipedia.org/wiki/List_of_cognitive_biases") %>%
+#'   bow("https://en.wikipedia.org/wiki/List_of_cognitive_biases") %>%
 #'    scrape(content="text/html; charset=UTF-8") %>%
 #'    html_nodes(".wikitable") %>%
 #'    html_table()
-#'  biases
-#'  }
-#'
-#'
-#' # another example
-#'  library(rvest)
-#'  library(polite)
-#'
-#'  host <- "https://www.cheese.com"
-#'  session <- bow(host)
-#'
-#'  # scrape pages by re-authenticating on new page and scraping with parameters
-#'  get_cheese <- function(session, path, params){
-#'    nod(session, path) %>%
-#'      scrape(params)
-#'  }
-#'
-#'  res <- vector("list", 5)
-#'  # iterate over first 5 pages
-#'  for (i in seq(5)){
-#'    res[[i]] <- get_cheese(session,
-#'                 path = "alphabetical",
-#'                 params = paste0("page=", i)) %>%
-#'      html_nodes("h3 a") %>%
-#'      html_text()
-#'
-#'  }
-#'  res
-#' }
+#'}
 #'
 #' @export
 scrape <- memoise::memoise(m_scrape)

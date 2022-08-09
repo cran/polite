@@ -4,8 +4,14 @@
 \alias{scrape}
 \title{Scrape the content of authorized page/API}
 \usage{
-scrape(bow, query = NULL, params = NULL, accept = "html",
-  content = NULL, verbose = FALSE)
+scrape(
+  bow,
+  query = NULL,
+  params = NULL,
+  accept = "html",
+  content = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{bow}{host introduction object of class \code{polite}, \code{session} created by \code{bow()} or \code{nod()}}
@@ -26,4 +32,14 @@ Object of class \code{httr::response} which can be further processed by function
 }
 \description{
 Scrape the content of authorized page/API
+}
+\examples{
+\donttest{
+ library(rvest)
+  bow("https://en.wikipedia.org/wiki/List_of_cognitive_biases") \%>\%
+   scrape(content="text/html; charset=UTF-8") \%>\%
+   html_nodes(".wikitable") \%>\%
+   html_table()
+}
+
 }
