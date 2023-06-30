@@ -1,4 +1,4 @@
-5941d6b136a5073e4b6574e156908e5b *DESCRIPTION
+3639a16dce34fa918273f80f53660d83 *DESCRIPTION
 e2c7a3f0f1c877899908cd2b58ec785f *LICENSE
 21adb742e6be626920aa18a7caf1dbee *NAMESPACE
 c57d5fbf6404b27e06ff44bd138bf347 *NEWS.md
@@ -7,10 +7,10 @@ c57d5fbf6404b27e06ff44bd138bf347 *NEWS.md
 04d1ea626a3f7bce2686eefb33286cc0 *R/html.R
 a4decd211190c26f42d6463342e7fc32 *R/nod.R
 3661faf84ab0ef79789f4abc2a08b674 *R/politely.R
-b219aafb4d6e33d740f071f57e3fe537 *R/rip.R
+0392fa1afdfb2c8d8d89e84be9163338 *R/rip.R
 77c761901974a27f28d7f682dcdd246a *R/scrape.R
 5688e530e359f625d25ca7912cc0b941 *R/use-manners.R
-02f52e86b945b3744b8c428a539ce24e *R/utils.R
+64f676d2387624308492977a51912bcb *R/utils.R
 888e40cc553c98e64b586ddb75d11eb0 *README.md
 71b6e97aaab7e586f718a553e1188d3f *inst/templates/polite_template.R
 14ed2b4f4c432c564a7d4e6a6bd8ceb6 *man/bow.Rd
@@ -19,11 +19,11 @@ e36231ecb18431b4847e2cfc663146d6 *man/figures/README-unnamed-chunk-10-1.png
 a380b29f9294c010d6141bd9c7190fcc *man/guess_basename.Rd
 f6897865708c1558be5753c6e6d35abd *man/html_attrs_dfr.Rd
 089acafcaae6f35e0e4ca9d9badf1a9a *man/nod.Rd
-3b731bed6c0bf27c6d82503582ebc74c *man/nullcoalesce.Rd
+bcea154e4941eacdb7716feb34f0a222 *man/nullcoalesce.Rd
 41f6af0e961bebe03089ee84018f3394 *man/pipe.Rd
 d43e6874b09cd0246e99b1fbd730f3ea *man/politely.Rd
 201410fe59b98ca3290b0c109cc2d813 *man/print.polite.Rd
-f4722ede6d58ad7a894cba7439a1fefd *man/rip.Rd
+46b9f01bfdd7625f28f8af1366623a58 *man/rip.Rd
 411574bcfc131a86a7487c3692d9328b *man/scrape.Rd
 bd07ec1eca329740c50d4170bee1e528 *man/set_delay.Rd
 668056c18913d8167e454672d136931e *man/use_manners.Rd
